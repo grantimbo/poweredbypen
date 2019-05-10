@@ -1,0 +1,173 @@
+/*
+	Theme Name: Powered by Pen
+	Theme URI: http://grantimbo.com/
+	Description: Powered by pen custom wordpress theme
+	Version: 1
+	Author: Grant Imbo
+	Author URI: http://grantimbo.com/
+	Tags: Powered by Pen, Digital Design, 3D Typography, Portfolio, Gallery
+*/
+
+
+/*------------------------------------*\
+    MAIN
+\*------------------------------------*/
+
+
+/* html element 62.5% font-size for REM use */
+html {
+	font-size:62.5%;
+	background: #000;
+	overflow-x: hidden;
+}
+body {
+	font:300 14px/1.4 'gotham_book', Helvetica, Arial, sans-serif;
+	color: #CFDBE1;
+	-webkit-font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+}
+
+.clear:before,
+.clear:after {
+    content:' ';
+    display:table;
+}
+.clear:after {
+    clear:both;
+}
+.clear {
+    *zoom:1;
+}
+img {
+	vertical-align:bottom;
+	max-width:100%;
+	width: 100%;
+	height: auto;
+}
+a {
+	color: #0052FF;
+	text-decoration:none;
+	outline: 0 !important;
+	border: 0;
+}
+a:hover {
+	color: #3182FF;
+}
+a:focus {
+	outline:0;
+}
+a:hover,
+a:active {
+	outline:0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'gotham_medium';
+}
+
+
+/*------------------------------------*\
+	Structure
+\*------------------------------------*/
+
+.sidebar {
+    position: fixed;
+    width: 25%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.logo {
+    max-width: 190px;
+    display: block;
+    margin: 40px auto 50px;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0; 
+    padding: 0;
+}
+.nav ul li {
+    list-style: none;
+    padding: 1rem;
+}
+.nav ul li a {
+    color: #fff;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.social-links {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.social-links a {
+    color: #fff;
+    font-size: 2rem;
+    width: 20%;
+    float: left;
+}
+
+
+main.wrap {
+    position: fixed;
+    left: 25%;
+    top: 0;
+    bottom:0;
+    right: 0;
+    background: #000;
+}
+
+
+
+
+
+
+
+
+
+
+/*------------------------------------*\
+	ICONS
+\*------------------------------------*/
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon/icomoon.eot?huhxjf');
+    src:    url('fonts/icomoon/icomoon.eot?huhxjf#iefix') format('embedded-opentype'),
+        url('fonts/icomoon/icomoon.ttf?huhxjf') format('truetype'),
+        url('fonts/icomoon/icomoon.woff?huhxjf') format('woff'),
+        url('fonts/icomoon/icomoon.svg?huhxjf#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-keyboard_arrow_right:before {content: "\e905";}
+.icon-keyboard_arrow_left:before {content: "\e906";}
+.icon-instagram:before {content: "\e900";}
+.icon-facebook:before {content: "\e901";}
+.icon-artstation:before {content: "\e902";}
+.icon-youtube:before {content: "\e903";}
+.icon-behance:before {content: "\e904";}
+
