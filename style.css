@@ -72,6 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar {
     position: fixed;
     width: 25%;
+    max-width: 350px;
     top: 0;
     left: -26%;
     bottom: 0;
@@ -135,17 +136,21 @@ main.wrap {
 /* Pages */
 
 main.wrap section {
-  /* display: none; */
-}
-
-main.wrap section.active {
-    display: block;
-}
-.trs {
     transition: all .3s;
     transition-delay: .3s;
     opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
+
+main.wrap section.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 /* Home */
 
@@ -172,25 +177,24 @@ main.wrap section.active {
 }
 .home-content {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 24%;
-    box-sizing: border-box;
-    font-size: 1.2rem;
+    bottom: 10px;
+    text-align: justify;
+    width: 340px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    color: #5a5a5a;
     opacity: 0;
     visibility: hidden;
     transition: all .3s;
     transition-delay: .5s;
 }
-
 .home-wrap.active .grntx,
 .home-wrap.active .ash { 
     top : 0 ;
     opacity: 1;
     visibility: visible;
 }
-
 .home-wrap.active .home-content {
     opacity: 1;
     visibility: visible;
@@ -199,37 +203,39 @@ main.wrap section.active {
 }
 
 /* portfolio */
-.portfolio-contents {
-    opacity: 0;
-    transition: all .3s;
-    transition-delay: .3s;
-}
-.portfolio-wrap.active .portfolio-contents {
-    opacity: 1;
-}
 
 figure.project-thumb {
     width: 33.333%;
     float: left;
 }
-
-
+.project-thumb-wrap {
+    /* border: 1px solid #3a3a3a; */
+}
+.project-thumb-wrap p {
+    display: none;
+}
+.project-container {
+    width: 80%;
+    padding: 20px;
+    background: #000;
+    margin: 50px auto;
+}
 
 
 /* about */
+.about-wrap {
+    display: flex;
+    align-items: center;
+}
 .about-content {
-    position: absolute;
-    top: 0;
-    max-width: 480px;
+    max-width: 500px;
     font-size: 2rem;
-    bottom: 0;
+    margin: auto;
     left: 0;
     right: 0;
-    margin: auto;
-    display: table;
-    transition: all .3s;
-    transition-delay: .3s;
-    opacity: 0;
+    display: block;
+    position: absolute;
+    top: 240px;
 }
 .about-wrap.active .about-content {
     opacity: 1;
@@ -240,18 +246,14 @@ figure.project-thumb {
 
 /* contact */
 .contact-content {
-    position: absolute;
-    top: 0;
-    max-width: 480px;
+    max-width: 500px;
     font-size: 2rem;
-    bottom: 0;
+    margin: auto;
     left: 0;
     right: 0;
-    margin: auto;
-    display: table;
-    transition: all .3s;
-    transition-delay: .3s;
-    opacity: 0;
+    display: block;
+    position: absolute;
+    top: 240px;
 }
 .pbyplogo {
     background-image: url(img/pbyplogo.png);
@@ -267,14 +269,87 @@ figure.project-thumb {
     opacity: 0;
     visibility: hidden;
 }
-.contact-wrap.active .contact-content {
-    opacity: 1;
-}
 .contact-wrap.active .pbyplogo {
     right: 0;
     opacity: .1;
     visibility: visible
+} 
+
+
+
+/*--------------------*\
+	Portfolio Modal
+\*--------------------*/
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #2d2f2ec9;
+    z-index: 10;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
+#modal .project-nav {
+	display: block;
+}
+#modal .portfolio-content {
+	margin: 0 auto;
+}
+
+
+/*carousel modal*/
+#imgModal {
+	position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#imgModal.active {
+	overflow: hidden;
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: start;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+#carouselWrap {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	padding: 20px;
+	position: relative;
+	z-index: 5;
+}
+#carouselWrap img {
+	width: auto;
+	margin: auto;
+	height: auto;
+}
+
+#imgModal .close-img-modal {
+    position: absolute;
+	background: rgba(7, 7, 8, 0.8);
+    top: 0;
+    right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+}
+
+
 
 /*------------------------------------*\
 	ICONS

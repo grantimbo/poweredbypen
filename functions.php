@@ -21,7 +21,7 @@ if (function_exists('add_theme_support')) {
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('portfolio-thumb', 300, 188, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
+    add_image_size('portfolio-thumb', 350, 350, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
@@ -216,8 +216,13 @@ function custom_login_header_url($url) {
 function remove_menus() {
     if ( current_user_can('administrator') ) {
         // remove_menu_page( 'edit.php' );                                //Tools
-        // remove_menu_page( 'tools.php' );                                //Tools
-        // remove_menu_page( 'edit-comments.php' );                        //Comments
+        remove_menu_page( 'tools.php' );                                //Tools
+        remove_menu_page( 'edit-comments.php' );                        //Comments
+        remove_menu_page( 'themes.php' );                        //Comments
+        remove_menu_page( 'users.php' );                        //Comments
+        remove_menu_page( 'index.php' );                        //Comments
+        remove_menu_page( 'plugins.php' );                        //Comments
+        remove_menu_page( 'options-general.php' );                        //Comments
     }
 
 }

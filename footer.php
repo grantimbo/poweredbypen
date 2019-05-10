@@ -1,4 +1,4 @@
-<?php /*	<div id="modal">
+	<div id="modal">
 		<article class="project-container" data-name="" >
 		    <header class="project-details">
 				<a class="close-modal" title="Back to project"><i class="icon-cross"></i></a>
@@ -18,6 +18,7 @@
 		<div id="carouselWrap"></div>
 		<span class="close-img-modal" data-button="close"></span>
 	</div>
+	<?php /*
 	<div class="loadbar-wrap">
 		<span class="loadbar"></span>
 	</div>

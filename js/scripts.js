@@ -1,12 +1,17 @@
 /* -------------------------------
 Author : Grant Imbo
 Site : grantimbo.com
-Version : 4.9
+Version : 1
 Description : A custom js for my Powered by Pen.
 ------------------------------- */
 
 var siteData = null,
 		portfolioData = null,
+
+		htmlBody = document.querySelector('html'),
+
+		defaultTitle = document.title,
+		defaultLink = location.pathname,
 
 		sidebar = document.querySelector('.sidebar'),
 		loadingDiv = document.querySelector('.loading'),
@@ -23,7 +28,15 @@ var siteData = null,
 		contactWrap = document.querySelector('section.contact-wrap'),
 		contactContent = document.querySelector('.contact-content'),
 
+
+		imgModalWrap = document.querySelector('#imgModal'),
+
+		modal = document.querySelector('#modal'),
+
+
 		bodyCheck = document.querySelector('body.home');
+
+		
 
 
 function loadSite() {
@@ -106,6 +119,8 @@ function displayArtworks() {
 
 			document.querySelector('.portfolio-contents').appendChild(thumb)
 		}
+
+		openSinglePortfolio();
 }
 
 
@@ -165,8 +180,102 @@ function menuSelection() {
 }
 
 
-function loadPortfolio() {
+function openSinglePortfolio() {
+	[].forEach.call(document.querySelectorAll('a.post-link'), function(e) {
+		e.addEventListener('click', function(e) {
+			e.preventDefault();
 
+				let id = this.dataset.id
+
+				for (var i = 0; i < portfolioData.length; i++) {
+					if (portfolioData[i].id == id) {
+	
+						let t = portfolioData[i].title.rendered
+						let x = portfolioData[i].excerpt.rendered
+						let c = portfolioData[i].content.rendered
+						let nxt = document.querySelector('a.next-post')
+						let prv = document.querySelector('a.prev-post')
+	
+						document.querySelector('.project-title').innerHTML = t
+						document.querySelector('.project-desc').innerHTML = x
+						document.querySelector('.project-content').innerHTML = c
+						
+	
+						if (portfolioData[i+1]) {
+							nxt.setAttribute('data-id', portfolioData[i+1].id)
+							nxt.classList.remove('hide')
+						} else {
+							nxt.classList.add('hide')
+						}
+	
+						if (portfolioData[i-1]) {
+							prv.setAttribute('data-id', portfolioData[i-1].id)
+							prv.classList.remove('hide')
+						} else {
+							prv.classList.add('hide')
+						}
+	
+						modal.style.display = 'block'
+						htmlBody.style.overflowY = 'hidden'
+	
+						document.title = portfolioData[i].title.rendered
+						// history.replaceState(null, portfolioData[i].title.rendered, portfolioData[i].link);
+					}
+				}
+	
+				closeModal()
+				imgModal()
+
+			})
+	})
+}
+
+function closeModal() {
+
+	[].forEach.call(document.querySelectorAll('a.close-modal'), function(e) { 
+		e.addEventListener('click', function(e) {
+			e.preventDefault()
+
+			modal.style.display = 'none'
+			htmlBody.style.overflowY = 'auto'
+
+			document.title = defaultTitle
+			history.replaceState(null, defaultTitle, defaultLink)
+		})
+	})
+}
+
+
+// ---------------------------------------
+// Individual Image Preview with Carousel
+// ---------------------------------------
+function imgModal() {
+
+	// variables
+	var clsBtn = document.querySelector('.close-img-modal')
+
+
+	document.addEventListener('click', function(e) {
+
+		if ( e.target.matches('.project-content img') ) {
+
+			document.querySelector('#carouselWrap').innerHTML = null
+			e.preventDefault()
+
+			var cloneImg = e.target.cloneNode(true)
+			
+			document.querySelector('#carouselWrap').appendChild(cloneImg)
+			imgModalWrap.classList.add('active')
+		}
+	})
+
+	clsBtn.addEventListener('click', function() {
+	
+		modal.style.overflowY = 'auto'
+		imgModalWrap.classList.remove('active')
+
+	})
+	
 }
 
 
