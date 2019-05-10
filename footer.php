@@ -1,4 +1,4 @@
-	<div id="modal">
+<?php /*	<div id="modal">
 		<article class="project-container" data-name="" >
 		    <header class="project-details">
 				<a class="close-modal" title="Back to project"><i class="icon-cross"></i></a>
@@ -21,6 +21,8 @@
 	<div class="loadbar-wrap">
 		<span class="loadbar"></span>
 	</div>
+
+	*/ ?>
 	<?php wp_footer(); ?>
 	</body>
 </html>
