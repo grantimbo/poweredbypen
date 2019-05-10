@@ -2,7 +2,7 @@
 Author : Grant Imbo
 Site : grantimbo.com
 Version : 1
-Description : A custom js for my Powered by Pen.
+Description : A custom js for Powered by Pen.
 ------------------------------- */
 
 var siteData = null,
