@@ -23,6 +23,12 @@
 	</div>
 
 	*/ ?>
+
+	
+	<div class="loading">
+		<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+	</div>
+
 	<?php wp_footer(); ?>
 	</body>
 </html>

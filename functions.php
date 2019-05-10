@@ -113,13 +113,13 @@ function header_scripts() {
 
 // Load HTML5 Blank styles
 function header_styles() {
-    wp_register_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.3/normalize.min.css', array(), '2.1.3', 'all');
+    wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.min.css', '2.1.3', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
     wp_register_style('grantimbo', get_template_directory_uri() . '/style.css', array(), '4.1', 'all');
     wp_enqueue_style('grantimbo'); // Enqueue it!
 
-    wp_localize_script('grantimboscripts', 'grantData', array(
+    wp_localize_script('grantimboscripts', 'pbypData', array(
         'siteUrl' => get_site_url(),
         // 'nonce' => wp_create_nonce('wp_rest')
     ));
@@ -162,26 +162,7 @@ function current_to_active($text) {
         return $text;
 }
 
-// If Dynamic Sidebar Exists
-if (function_exists('register_sidebar')) {
 
-    // Sidebar Widgets
-    register_sidebar(array(
-        'name' => __('Sidebar', 'grantimbo'),
-        'description' => __('Contents for the Sidebar', 'grantimbo'),
-        'id' => 'widget-area-1',
-        'before_widget' => '<div id="sidebar-men" class="%2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3>',
-        'after_title' => '</h3>'
-    ));
-
-}
-
-// Remove invalid rel attribute values in the categorylist
-function remove_category_rel_from_category_list($thelist) {
-    return str_replace('rel="category tag"', 'rel="tag"', $thelist);
-}
 
 // Add page slug to body class, love this - Credit: Starkers Wordpress Theme
 function add_slug_to_body_class($classes) {
@@ -199,8 +180,6 @@ function add_slug_to_body_class($classes) {
 
     return $classes;
 }
-
-
 
 // Remove wp_head() injected Recent Comment styles
 function remove_recent_comments_style() {
@@ -290,51 +269,6 @@ function change_post_object() {
     Custom Post Types
 \*------------------------------------*/
 
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
-function webdev_posttype() {
-    register_taxonomy_for_object_type('category', 'grantimbo'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'grantimbo');
-    register_post_type('webdevprojects', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('Web Dev', 'grantimbo'), // Rename these to suit
-            'singular_name' => __('Web Dev', 'grantimbo'),
-            'add_new' => __('Add New Web Dev', 'grantimbo'),
-            'add_new_item' => __('Add New Web Dev', 'grantimbo'),
-            'edit' => __('Edit', 'grantimbo'),
-            'edit_item' => __('Edit Web Dev', 'grantimbo'),
-            'new_item' => __('New Web Dev', 'grantimbo'),
-            'view' => __('View Web Dev', 'grantimbo'),
-            'view_item' => __('View Web Dev', 'grantimbo'),
-            'search_items' => __('Search Web Dev', 'grantimbo'),
-            'not_found' => __('No Web Dev found', 'grantimbo'),
-            'not_found_in_trash' => __('No Web Dev found in Trash', 'grantimbo')
-        ),
-        'public' => true,
-        'hierarchical' => false, // Allows your posts to behave like Hierarchy Pages
-        'menu_position' => 4,
-        'has_archive' => false,
-        'show_in_rest'       => true,
-        'rest_base'          => 'webdevprojects',
-        'rest_controller_class' => 'WP_REST_Posts_Controller',
-        'menu_icon' => 'dashicons-editor-code',
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail',
-            'comments',
-            'post-formats'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
-}
-
-
 
 // Rename Post Formats
 function rename_post_formats( $translation, $text, $context, $domain ) {
@@ -360,7 +294,6 @@ add_action('admin_init','remove_menus');
 add_action('admin_menu', 'change_post_label' );
 add_action('wp_enqueue_scripts', 'header_styles'); // Add Theme Stylesheet
 add_action('init', 'register_menus'); // Add HTML5 Blank Menu
-add_action('init', 'webdev_posttype'); // Add our Portfolio Type
 add_action('widgets_init', 'remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('login_head', 'custom_login_styles');
 
