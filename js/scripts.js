@@ -9,12 +9,16 @@ var siteData = null,
 		portfolioData = null,
 
 		htmlBody = document.querySelector('html'),
+		menuBtn = document.querySelector('.menu-button'),
+		menuBtnCls = document.querySelector('.menu-button-close'),
+		menuWrap = document.querySelector('.mobile-menu'),
 
 		defaultTitle = document.title,
 		defaultLink = location.pathname,
 
 		sidebar = document.querySelector('.sidebar'),
 		loadingDiv = document.querySelector('.loading'),
+		loadingFolioDiv = document.querySelector('.portfolio-loading'),
 
 		homeWrap = document.querySelector('section.home-wrap'),
 		homeContent = document.querySelector('.home-content'),
@@ -67,9 +71,13 @@ function loadSite() {
 			)
 }
 
+
+
 function fetchPortfolio() {
 
 	var artWorks = pbypData.siteUrl + '/wp-json/wp/v2/posts'
+
+	loadingFolioDiv.classList.remove('hide')
 
 	fetch(artWorks)
 		.then (
@@ -85,8 +93,7 @@ function fetchPortfolio() {
 					
 					portfolioData = data
 
-					displayArtworks()
-					
+					displayArtworks()					
 
 				})
 			}
@@ -110,8 +117,6 @@ function displayArtworks() {
 			thumb.setAttribute('class', 'project-thumb')
 			thumbWrap.setAttribute('class', 'project-thumb-wrap')
 
-
-
 			thumb.appendChild(thumbWrap).appendChild(a).appendChild(img)
 			thumbWrap.appendChild(p)
 
@@ -121,6 +126,7 @@ function displayArtworks() {
 		}
 
 		openSinglePortfolio();
+		loadingFolioDiv.classList.add('hide')
 }
 
 
@@ -141,6 +147,7 @@ function displaySection() {
 			menuSelection()
 		}
 
+
 }
 
 function menuSelection() {
@@ -150,6 +157,8 @@ function menuSelection() {
 
 				let menuSiblings = document.querySelectorAll('main section')
 				let activeMenu = this.getAttribute('data-nav')
+
+				menuWrap.classList.remove('open')
 
 				if (activeMenu == 'portfolio') {
 					
@@ -215,7 +224,7 @@ function openSinglePortfolio() {
 							prv.classList.add('hide')
 						}
 	
-						modal.style.display = 'block'
+						modal.classList.add('active')
 						htmlBody.style.overflowY = 'hidden'
 	
 						document.title = portfolioData[i].title.rendered
@@ -224,7 +233,6 @@ function openSinglePortfolio() {
 				}
 	
 				closeModal()
-				imgModal()
 
 			})
 	})
@@ -236,7 +244,7 @@ function closeModal() {
 		e.addEventListener('click', function(e) {
 			e.preventDefault()
 
-			modal.style.display = 'none'
+			modal.classList.remove('active')
 			htmlBody.style.overflowY = 'auto'
 
 			document.title = defaultTitle
@@ -246,37 +254,16 @@ function closeModal() {
 }
 
 
-// ---------------------------------------
-// Individual Image Preview with Carousel
-// ---------------------------------------
-function imgModal() {
+function menuAndnav() {
 
-	// variables
-	var clsBtn = document.querySelector('.close-img-modal')
+	menuBtn.addEventListener('click', toggleMenu)
+	menuBtnCls.addEventListener('click', toggleMenu)
 
-
-	document.addEventListener('click', function(e) {
-
-		if ( e.target.matches('.project-content img') ) {
-
-			document.querySelector('#carouselWrap').innerHTML = null
-			e.preventDefault()
-
-			var cloneImg = e.target.cloneNode(true)
-			
-			document.querySelector('#carouselWrap').appendChild(cloneImg)
-			imgModalWrap.classList.add('active')
-		}
-	})
-
-	clsBtn.addEventListener('click', function() {
-	
-		modal.style.overflowY = 'auto'
-		imgModalWrap.classList.remove('active')
-
-	})
-	
+	function toggleMenu() {
+		menuWrap.classList.toggle('open')
+	}
 }
 
 
 loadSite()
+menuAndnav()
