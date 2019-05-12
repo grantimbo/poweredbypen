@@ -1,18 +1,17 @@
 /*
 	Theme Name: Powered by Pen
 	Theme URI: http://grantimbo.com/
-	Description: Powered by pen custom wordpress theme
+	Description: This theme fully takes advantage of wordpress rest api. not the usual wp theme :D
 	Version: 1
 	Author: Grant Imbo
 	Author URI: http://grantimbo.com/
-	Tags: Powered by Pen, Digital Design, 3D Typography, Portfolio, Gallery
+	Tags: tags, are, shite
 */
 
 
 /*------------------------------------*\
     MAIN
 \*------------------------------------*/
-
 
 /* html element 62.5% font-size for REM use */
 html {
@@ -128,9 +127,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px;
     cursor: pointer;
 }
-
-
-
 .social-links {
     margin: 0;
     position: absolute;
@@ -148,7 +144,6 @@ h1, h2, h3, h4, h5, h6 {
 .social-links a:hover {
     color: #2f2f2f
 }
-
 main.wrap {
     position: fixed;
     left: 25%;
@@ -159,8 +154,6 @@ main.wrap {
     color: #929292;
     font-size: 1.6rem;;
 }
-
-
 
 
 
@@ -236,10 +229,8 @@ main.wrap section.active {
 }
 
 
+/* About */
 
-
-
-/* about */
 .about-wrap {
     display: flex;
     align-items: center;
@@ -281,9 +272,8 @@ main.wrap section.active {
 }
 
 
+/* Contact */
 
-
-/* contact */
 .contact-content {
     max-width: 500px;
     margin: auto;
@@ -317,7 +307,8 @@ main.wrap section.active {
 } 
 
 
-/* portfolio */
+/* Portfolio */
+
 .portfolio-wrap {
     overflow-y: auto !important;
     background: #0a0a0a
@@ -409,9 +400,7 @@ figure.project-thumb {
 }
 
 
-
-
-/* scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -423,9 +412,23 @@ figure.project-thumb {
 }
 
 
+/* 404 */
+body.error404 {
+    height: 100vh;
+    align-items: center;
+    display: flex;
+}
+body.error404 main {
+    text-align: center;
+    margin: 0 auto;
+}
+a.logo-404 {
+    max-width: 160px;
+    display: inline-block;
+}
+
 
 /* Loading */
-
 .loading, .portfolio-loading {
     position: relative;
     display: flex;
@@ -666,7 +669,7 @@ figure.project-thumb {
     }
     
     .nav ul li a {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
     }
     nav.social-links {
         position: relative;
@@ -674,7 +677,7 @@ figure.project-thumb {
         margin: 0 auto;
     }
     nav.social-links a {
-        font-size: 4rem;
+        font-size: 2.5rem;
     }
 
     .home-content {
@@ -690,8 +693,8 @@ figure.project-thumb {
         top: 200px;
     }
 
-    .contact-wrap.active:after,
-    .about-wrap.active:after {
+    .contact-wrap:after,
+    .about-wrap:after {
         width: 100%;
     }
 

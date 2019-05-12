@@ -103,7 +103,7 @@ function header_scripts() {
         // wp_register_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js', array(), '2.7.1'); // Modernizr
         // wp_enqueue_script('modernizr'); // Enqueue it!
 
-        wp_register_script('grantimboscripts', get_template_directory_uri() . '/js/scripts.js', array(), '4.8'); // Site Functionalities
+        wp_register_script('grantimboscripts', get_template_directory_uri() . '/js/scripts.js', array(), '1'); // Site Functionalities
         wp_enqueue_script('grantimboscripts'); // Enqueue it!
 
     }
@@ -217,12 +217,13 @@ function remove_menus() {
     if ( current_user_can('administrator') ) {
         // remove_menu_page( 'edit.php' );                                //Tools
         remove_menu_page( 'tools.php' );                                //Tools
+        remove_menu_page( 'upload.php' );                                //Tools
         remove_menu_page( 'edit-comments.php' );                        //Comments
         remove_menu_page( 'themes.php' );                        //Comments
         remove_menu_page( 'users.php' );                        //Comments
         remove_menu_page( 'index.php' );                        //Comments
         remove_menu_page( 'plugins.php' );                        //Comments
-        remove_menu_page( 'options-general.php' );                        //Comments
+        // remove_menu_page( 'options-general.php' );                        //Comments
     }
 
 }

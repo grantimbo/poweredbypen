@@ -5,54 +5,58 @@ Version : 1
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 
-var siteData = null,
-		portfolioData = null,
+let siteData = null,
+	portfolioData = null,
+	singleArtworkData = null,
 
-		htmlBody = document.querySelector('html'),
-		menuBtn = document.querySelector('.menu-button'),
-		menuBtnCls = document.querySelector('.menu-button-close'),
-		menuWrap = document.querySelector('.mobile-menu'),
+	htmlBody = document.querySelector('html'),
+	menuBtn = document.querySelector('.menu-button'),
+	menuBtnCls = document.querySelector('.menu-button-close'),
+	menuWrap = document.querySelector('.mobile-menu'),
 
-		defaultTitle = document.title,
-		defaultLink = location.pathname,
+	defaultTitle = document.title,
+	defaultLink = location.pathname,
 
-		sidebar = document.querySelector('.sidebar'),
-		loadingDiv = document.querySelector('.loading'),
-		loadingFolioDiv = document.querySelector('.portfolio-loading'),
+	sidebar = document.querySelector('.sidebar'),
+	loadingDiv = document.querySelector('.loading'),
+	loadingFolioDiv = document.querySelector('.portfolio-loading'),
 
-		homeWrap = document.querySelector('section.home-wrap'),
-		homeContent = document.querySelector('.home-content'),
+	homeWrap = document.querySelector('section.home-wrap'),
+	homeContent = document.querySelector('.home-content'),
 
-		portfolioWrap = document.querySelector('section.portfolio-wrap'),
-		portfolioContent = document.querySelector('.portfolio-content'),
+	portfolioWrap = document.querySelector('section.portfolio-wrap'),
+	portfolioContent = document.querySelector('.portfolio-content'),
 
-		aboutWrap = document.querySelector('section.about-wrap'),
-		aboutContent = document.querySelector('.about-content'),
+	aboutWrap = document.querySelector('section.about-wrap'),
+	aboutContent = document.querySelector('.about-content'),
 
-		contactWrap = document.querySelector('section.contact-wrap'),
-		contactContent = document.querySelector('.contact-content'),
+	contactWrap = document.querySelector('section.contact-wrap'),
+	contactContent = document.querySelector('.contact-content'),
 
+	imgModalWrap = document.querySelector('#imgModal'),
 
-		imgModalWrap = document.querySelector('#imgModal'),
+	modal = document.querySelector('#modal'),
 
-		modal = document.querySelector('#modal'),
-
-
-		bodyCheck = document.querySelector('body.home');
+	homeCheck = document.querySelector('body.home'),
+	aboutCheck = document.querySelector('body.about'),
+	contactCheck = document.querySelector('body.contact'),
+	portfolioCheck = document.querySelector('body.portfolio'),
+	portfolioSingleCheck = document.querySelector('body.single');
 
 		
 
 
 function loadSite() {
 
-		var pageRest = pbypData.siteUrl + '/wp-json/wp/v2/pages'
+		let pageRest = pbypData.siteUrl + '/wp-json/wp/v2/pages'
 
 		fetch(pageRest)
 			.then (
 				function(response) {
 
 					if (response.status !== 200) {
-						console.log('Looks like there was a problem.');
+						console.log('Looks like there was a problem.')
+						alert('Looks like there was a problem. Please reload the page or contact us')
 						return
 					}
 
@@ -75,7 +79,7 @@ function loadSite() {
 
 function fetchPortfolio() {
 
-	var artWorks = pbypData.siteUrl + '/wp-json/wp/v2/posts'
+	let artWorks = pbypData.siteUrl + '/wp-json/wp/v2/posts'
 
 	loadingFolioDiv.classList.remove('hide')
 
@@ -84,7 +88,7 @@ function fetchPortfolio() {
 			function(response) {
 
 				if (response.status !== 200) {
-					console.log('Looks like there was a problem.');
+					console.log('Looks like there was a problem.')
 					alert('Looks like there was a problem. Please reload the page or contact us')
 					return
 				}
@@ -100,40 +104,90 @@ function fetchPortfolio() {
 		)
 }
 
+function fetchSinglePortfolio() {
+
+	let postID = document.querySelector('body.single').getAttribute('data-post')
+	let singleArtwork = pbypData.siteUrl + '/wp-json/wp/v2/posts/' + postID
+
+
+	fetch(singleArtwork)
+		.then (
+			function(response) {
+
+				if (response.status !== 200) {
+					console.log('Looks like there was a problem.')
+					alert('Looks like there was a problem. Please reload the page or contact us')
+					return
+				}
+
+				response.json().then(function(data) {
+					
+					singleArtworkData = data
+
+					fetchPortfolio()
+					displaySinglePortfolio()
+
+							
+
+				})
+			}
+		)
+	
+}
+
+
+function displaySinglePortfolio() {
+	let t = singleArtworkData.title.rendered
+	let x = singleArtworkData.excerpt.rendered
+	let c = singleArtworkData.content.rendered
+
+	document.querySelector('.project-title').innerHTML = t
+	document.querySelector('.project-desc').innerHTML = x
+	document.querySelector('.project-content').innerHTML = c
+	
+
+	modal.classList.add('active')
+	htmlBody.style.overflowY = 'hidden'
+
+	document.title = singleArtworkData.title.rendered
+
+	closeModal()
+}
+
 
 function displayArtworks() {
-		for (var i = 0; i < portfolioData.length; i++) {
-			let a = document.createElement('a')
-			let p = document.createElement('p')
-			let img = document.createElement('img')
-			let thumb = document.createElement('figure')
-			let thumbWrap = document.createElement('div')
 
-			a.setAttribute('data-id', portfolioData[i].id)
-			a.setAttribute('href', portfolioData[i].link)
-			a.setAttribute('class', 'post-link')
-			p.innerText = portfolioData[i].title.rendered
-			img.setAttribute('src', portfolioData[i].fimg_url)
-			thumb.setAttribute('class', 'project-thumb')
-			thumbWrap.setAttribute('class', 'project-thumb-wrap')
+	for (let i = 0; i < portfolioData.length; i++) {
+		let a = document.createElement('a')
+		let p = document.createElement('p')
+		let img = document.createElement('img')
+		let thumb = document.createElement('figure')
+		let thumbWrap = document.createElement('div')
 
-			thumb.appendChild(thumbWrap).appendChild(a).appendChild(img)
-			thumbWrap.appendChild(p)
+		a.setAttribute('data-id', portfolioData[i].id)
+		a.setAttribute('href', portfolioData[i].link)
+		a.setAttribute('class', 'post-link')
+		p.innerText = portfolioData[i].title.rendered
+		img.setAttribute('src', portfolioData[i].fimg_url)
+		thumb.setAttribute('class', 'project-thumb')
+		thumbWrap.setAttribute('class', 'project-thumb-wrap')
 
-			// portfolioContent.appendChild(thumb)
+		thumb.appendChild(thumbWrap).appendChild(a).appendChild(img)
+		thumbWrap.appendChild(p)
 
-			document.querySelector('.portfolio-contents').appendChild(thumb)
-		}
+		// portfolioContent.appendChild(thumb)
 
-		openSinglePortfolio();
-		loadingFolioDiv.classList.add('hide')
+		document.querySelector('.portfolio-contents').appendChild(thumb)
+	}
+
+	openSinglePortfolio();
+	loadingFolioDiv.classList.add('hide')
 }
 
 
 function loadPages() {
 
 	homeContent.innerHTML = siteData[3].content.rendered
-	// homeWrap.innerHTML = siteData[3].content.rendered
 	aboutContent.innerHTML = siteData[2].content.rendered
 	contactContent.innerHTML = siteData[1].content.rendered
 
@@ -142,13 +196,35 @@ function loadPages() {
 	
 function displaySection() {
 
-		if (bodyCheck) {
-			homeWrap.classList.add('active');
-			menuSelection()
+		if (portfolioCheck) {
+
+			fetchPortfolio()
+			portfolioWrap.classList.add('active')
+
+		} else if (portfolioSingleCheck) {
+			
+			fetchSinglePortfolio()
+			portfolioWrap.classList.add('active')
+
+		} else if (aboutCheck) {
+			
+			aboutWrap.classList.add('active')
+
+		} else if (contactCheck) {
+
+			contactWrap.classList.add('active')
+
+		} else {
+
+			homeWrap.classList.add('active')
+
 		}
 
+		menuSelection()
 
 }
+
+
 
 function menuSelection() {
 	[].forEach.call(document.querySelectorAll('a[data-nav]'), function(e) {
@@ -196,33 +272,16 @@ function openSinglePortfolio() {
 
 				let id = this.dataset.id
 
-				for (var i = 0; i < portfolioData.length; i++) {
+				for (let i = 0; i < portfolioData.length; i++) {
 					if (portfolioData[i].id == id) {
 	
 						let t = portfolioData[i].title.rendered
 						let x = portfolioData[i].excerpt.rendered
 						let c = portfolioData[i].content.rendered
-						let nxt = document.querySelector('a.next-post')
-						let prv = document.querySelector('a.prev-post')
 	
 						document.querySelector('.project-title').innerHTML = t
 						document.querySelector('.project-desc').innerHTML = x
 						document.querySelector('.project-content').innerHTML = c
-						
-	
-						if (portfolioData[i+1]) {
-							nxt.setAttribute('data-id', portfolioData[i+1].id)
-							nxt.classList.remove('hide')
-						} else {
-							nxt.classList.add('hide')
-						}
-	
-						if (portfolioData[i-1]) {
-							prv.setAttribute('data-id', portfolioData[i-1].id)
-							prv.classList.remove('hide')
-						} else {
-							prv.classList.add('hide')
-						}
 	
 						modal.classList.add('active')
 						htmlBody.style.overflowY = 'hidden'

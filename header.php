@@ -14,6 +14,6 @@
 
 </head>
 
-<body <?php body_class(); ?>>
+<body data-post="<?php echo the_ID(); ?>" <?php body_class(); ?>>
 
     <?php echo get_template_part('sidebar'); ?>
