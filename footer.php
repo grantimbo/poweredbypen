@@ -6,10 +6,6 @@
 		        <div class="project-desc"></div>
 		    </header>
 		    <section class="project-content"></section>
-		    <footer class="project-footer clear">
-		        <a class="post-link prev-post"><i class="icon-chevron-left"></i></a>
-				<a class="post-link next-post"><i class="icon-chevron-right"></i></a>
-		    </footer>                          
 		</article>
 	</div>
 	
