@@ -1,7 +1,11 @@
 # Powered by Pen
-A headless WordPress theme that takes advantage of Wordpress Rest API. Not a usual wp theme :D
+A WordPress theme that takes advantage of Wordpress Rest API. Not the usual wp theme.
 
 (https://poweredbypen.com)
 
-- Single page load
-- Vanilla JS
+### Features
+- Single page load on all pages
+- No extra js library. It's using Vanilla JS
+- Making use of CSS transitions
+- Fully responsive
+- Simple and minimalist. Fast as fck
