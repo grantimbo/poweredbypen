@@ -1,7 +1,13 @@
 <?php get_header(); ?>
 <main class="wrap" role="main">
 	<section class="home-wrap home">
-        <div class="home-content"></div>
+        <div class="home-content">
+            <div class="slide-controls">
+                <a class="prev-slide"><i class="icon-navigate_before"></i></a>
+                <a class="next-slide"><i class="icon-navigate_next"></i></a>
+            </div>
+            <div class="slides"></div>
+        </div>
     </section>
     <section class="portfolio portfolio-wrap">
         <div class="portfolio-contents"></div>
