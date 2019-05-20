@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar {
     position: fixed;
-    width: 25%;
+    width: 20%;
     /* max-width: 350px; */
     top: 0;
     left: -26%;
@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-    max-width: 60%;
+    max-width: 50%;
     display: block;
     margin: 40px auto 20px auto;
 }
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     letter-spacing: 4px;
     color: #fff;
-    margin: 0 0 40px;
+    margin: 0 0 90px;
 }
 .tagline span {
     font-weight: 100;
@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nav ul li a {
     color: #fff;
-    font-size: 1.8rem;;
+    font-size: 1.6rem;;
     text-transform: uppercase;
     transition: all .1s;
 }
@@ -131,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     position: absolute;
     width: 100%;
-    bottom: 10px;
+    bottom: 25px;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 main.wrap {
     position: fixed;
-    left: 25%;
+    left: 20%;
     top: 0;
     bottom:0;
     right: 0;
@@ -176,7 +176,64 @@ main.wrap section.active {
 }
 
 
+
 /* Home */
+
+.home-content {
+    visibility: hidden;
+    transition: all .3s;
+    transition-delay: .5s;
+}
+.home-wrap.active .home-content {
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s;
+    transition-delay: .3s;
+}
+.home-content,
+.slides,
+.slider-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-position: center;
+    background-size: cover;
+}
+.slider-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .5s;
+}
+.slider-container.active {
+    opacity: 1;
+    visibility: visible;
+    transition: all .5s;
+}
+
+.slide-controls {
+    position: absolute;
+    font-size: 50px;
+    z-index: 2;
+    top: 48%;
+    width: 100%;
+}
+.slide-controls a {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    height: 60px;
+}
+a.prev-slide {
+    left: 0;
+}
+a.next-slide {
+    right: 0;
+}
+
+
+/* About */
 
 .ash, .grntx {
     position: absolute;
@@ -199,7 +256,7 @@ main.wrap section.active {
     opacity: 0;
     visibility: hidden;
 }
-.home-content {
+.about-content {
     position: absolute;
     bottom: 10px;
     max-width: 500px;
@@ -215,60 +272,17 @@ main.wrap section.active {
     padding: 20px;
     box-sizing: border-box;
 }
-.home-wrap.active .grntx,
-.home-wrap.active .ash { 
+.about-wrap.active .grntx,
+.about-wrap.active .ash { 
     top : 0 ;
     opacity: 1;
     visibility: visible;
 }
-.home-wrap.active .home-content {
+.about-wrap.active .about-content {
     opacity: 1;
     visibility: visible;
     transition: all .3s;
     transition-delay: .3s;
-}
-
-
-/* About */
-
-.about-wrap {
-    display: flex;
-    align-items: center;
-}
-.about-content {
-    max-width: 500px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    display: block;
-    position: absolute;
-    top: 240px;
-    padding: 20px;
-}
-.about-wrap:after,
-.contact-wrap:after {
-    content: "";
-    display: block;
-    background: url(img/pbyp-logo.svg) no-repeat 0 -110%;
-    background-size: cover;
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: .1;
-    transition: all .3s;
-    transition-delay: .5s;
-    opacity: 0;
-    visibility: hidden;
-}
-.about-wrap.active:after {
-    opacity: .1;
-    visibility: visible;
-    background-position: 0 20%;
-} 
-.about-wrap.active .about-content {
-    opacity: 1;
 }
 
 
@@ -285,23 +299,24 @@ main.wrap section.active {
     padding: 20px;
 }
 .contact-wrap:after {
+    content: "";
+    display: block;
+    background: url(img/pbyp-logo.svg) no-repeat 0 -110%;
     background-size: cover;
     background-position: 0 220%;
     position: absolute;
     width: 50%;
     height: 100%;
     top: 0;
-    left: auto;
     right: 0;
     bottom: -50%;
-    opacity: .1;
     transition: all .3s;
     transition-delay: .5s;
     opacity: 0;
     visibility: hidden;
 }
 .contact-wrap.active:after {
-    opacity: .1;
+    opacity: .2;
     background-position: 0 50%;
     visibility: visible;
 } 
@@ -314,7 +329,7 @@ main.wrap section.active {
     background: #0a0a0a
 }
 figure.project-thumb {
-    width: 33.333%;
+    width: 25%;
     float: left;
 }
 .project-thumb-wrap p {
@@ -329,11 +344,11 @@ figure.project-thumb {
     min-height: 80vh;
 }
 .project-title {
-    font-size: 2rem;
+    font-size: 2.6rem;
     color: #fff;
 }
 .project-desc {
-    font-size: 1.2rem;
+    /* font-size: 1.6rem; */
     margin-bottom: 20px;
 }
 
@@ -588,24 +603,31 @@ a.logo-404 {
 	   only screen and (min-resolution:144dppx) {
 
 }
-@media (max-height: 600px) {
+@media (max-height: 750px) {
+    .tagline {
+        margin-bottom: 50px;
+    }
+}
+@media (max-height: 650px) {
     .logo {
-        max-width: 40%;
-    }
-    .mobile-menu nav.nav {
-        margin-top: 60px;
-    }
-    .nav ul li a {
-        font-size: 1.2rem;;
+        max-width: 120px;
     }
 }
 
 
+@media (max-width: 1400px) {
+    .tagline {
+        font-size: 1.8rem;
+    }
+}
 
+@media (max-width: 1280px) {
+    
+}
 
 @media (max-width : 1080px) {
     .tagline {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
     }
     .nav ul li a {
         font-size: 1.6rem;;
@@ -613,9 +635,15 @@ a.logo-404 {
     main.wrap {
         font-size: 1.4rem;
     }
+    .social-links a {
+        font-size: 1.6rem;
+    }
+    figure.project-thumb {
+        width: 33.333%;
+    }
 }
 
-@media (max-width : 760px) {
+@media (max-width : 760px ), ( max-height: 540px)  {
     .sidebar {
         left: 0;
         right: 0;
