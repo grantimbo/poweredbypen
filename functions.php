@@ -119,6 +119,8 @@ function header_styles() {
     wp_register_style('grantimbo', get_template_directory_uri() . '/style.css', array(), '4.1', 'all');
     wp_enqueue_style('grantimbo'); // Enqueue it!
 
+    // wp_dequeue_style( 'wp-block-library' ); // Remove Gutenberg css
+
     wp_localize_script('grantimboscripts', 'pbypData', array(
         'siteUrl' => get_site_url(),
         // 'nonce' => wp_create_nonce('wp_rest')
@@ -215,7 +217,6 @@ function custom_login_header_url($url) {
 // remove wp-admin menus
 function remove_menus() {
     if ( current_user_can('administrator') ) {
-        remove_menu_page( 'edit.php' );
         remove_menu_page( 'tools.php' );
         remove_menu_page( 'upload.php' );
         remove_menu_page( 'edit-comments.php' );
