@@ -1,7 +1,7 @@
 /* -------------------------------
 Author : Grant Imbo
 Site : grantimbo.com
-Version : 1
+Version : 1.2
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 
@@ -22,7 +22,7 @@ let siteData = null,
 	loadingFolioDiv = document.querySelector('.portfolio-loading'),
 
 	homeWrap = document.querySelector('section.home-wrap'),
-	homeContent = document.querySelector('.home-content'),
+	homeSlide = document.querySelector('.slides'),
 
 	portfolioWrap = document.querySelector('section.portfolio-wrap'),
 	portfolioContent = document.querySelector('.portfolio-content'),
@@ -37,11 +37,14 @@ let siteData = null,
 
 	modal = document.querySelector('#modal'),
 
+
+
 	homeCheck = document.querySelector('body.home'),
 	aboutCheck = document.querySelector('body.about'),
 	contactCheck = document.querySelector('body.contact'),
 	portfolioCheck = document.querySelector('body.portfolio'),
 	portfolioSingleCheck = document.querySelector('body.single');
+	
 
 		
 
@@ -75,6 +78,128 @@ function loadSite() {
 			)
 }
 
+function loadPages() {
+
+	homeSlider()
+
+	aboutContent.innerHTML = siteData[2].content.rendered
+	contactContent.innerHTML = siteData[1].content.rendered
+
+
+}
+
+
+function shownext() {
+		
+	let activeSlide = document.querySelector('.slides .active')
+	activeSlide.classList.remove('active')
+	
+	if (activeSlide == document.querySelector('.slides div:last-child')) {
+		document.querySelector('.slides div:first-child').classList.add('active')
+	} else {
+		activeSlide.nextSibling.classList.add('active')
+	}
+}
+
+var timer = setInterval( shownext, 10000);
+
+
+
+function homeSlider() {
+
+	let contents = document.createElement('div')
+	
+	contents.innerHTML = siteData[3].content.rendered
+
+	let images = contents.getElementsByTagName('img')
+
+
+
+	for (let i = 0; i < images.length; i++ ) {
+		
+		let div = document.createElement('div')
+		
+		div.setAttribute('class', 'slider-container')
+		div.setAttribute('style', 'background-image:url(' +  images[i].getAttribute('src') + ')' )
+
+		homeSlide.appendChild(div)
+
+	}
+
+	homeSlide.firstChild.classList.add('active')
+
+	sliderControls()
+
+}
+
+
+function  sliderControls() {
+
+	[].forEach.call(document.querySelectorAll('.slide-controls a'), function(e) { 
+		e.addEventListener('click', function(e) {
+			e.preventDefault()
+
+			// reset interval
+			clearInterval(timer)
+			timer = setInterval( shownext, 10000)
+
+			let activeSlide = document.querySelector('.slides .active')
+			activeSlide.classList.remove('active')
+
+
+			if (this.getAttribute('class') == "prev-slide" ) {
+
+				if (activeSlide == document.querySelector('.slides div:first-child')) {
+					document.querySelector('.slides div:last-child').classList.add('active')
+				} else {
+					activeSlide.previousSibling.classList.add('active')
+				}
+
+			} else {
+
+				if (activeSlide == document.querySelector('.slides div:last-child')) {
+					document.querySelector('.slides div:first-child').classList.add('active')
+				} else {
+					activeSlide.nextSibling.classList.add('active')
+				}
+			}
+			
+
+		})
+	})
+
+}
+
+
+function displaySection() {
+
+	if (portfolioCheck) {
+
+		fetchPortfolio()
+		portfolioWrap.classList.add('active')
+
+	} else if (portfolioSingleCheck) {
+		
+		fetchSinglePortfolio()
+		portfolioWrap.classList.add('active')
+
+	} else if (aboutCheck) {
+		
+		aboutWrap.classList.add('active')
+
+	} else if (contactCheck) {
+
+		contactWrap.classList.add('active')
+
+	} else {
+
+		homeWrap.classList.add('active')
+
+	}
+
+	menuSelection()
+
+}
 
 
 function fetchPortfolio() {
@@ -103,6 +228,7 @@ function fetchPortfolio() {
 			}
 		)
 }
+
 
 function fetchSinglePortfolio() {
 
@@ -180,75 +306,39 @@ function displayArtworks() {
 		document.querySelector('.portfolio-contents').appendChild(thumb)
 	}
 
-	openSinglePortfolio();
+	openSinglePortfolio()
 	loadingFolioDiv.classList.add('hide')
 }
-
-
-function loadPages() {
-
-	homeContent.innerHTML = siteData[3].content.rendered
-	aboutContent.innerHTML = siteData[2].content.rendered
-	contactContent.innerHTML = siteData[1].content.rendered
-
-}
-	
-	
-function displaySection() {
-
-		if (portfolioCheck) {
-
-			fetchPortfolio()
-			portfolioWrap.classList.add('active')
-
-		} else if (portfolioSingleCheck) {
-			
-			fetchSinglePortfolio()
-			portfolioWrap.classList.add('active')
-
-		} else if (aboutCheck) {
-			
-			aboutWrap.classList.add('active')
-
-		} else if (contactCheck) {
-
-			contactWrap.classList.add('active')
-
-		} else {
-
-			homeWrap.classList.add('active')
-
-		}
-
-		menuSelection()
-
-}
-
 
 
 function menuSelection() {
 	[].forEach.call(document.querySelectorAll('a[data-nav]'), function(e) {
 			e.addEventListener('click', function(e) {
-				e.preventDefault();
+				e.preventDefault()
 
 				let menuSiblings = document.querySelectorAll('main section')
 				let activeMenu = this.getAttribute('data-nav')
 
 				menuWrap.classList.remove('open')
 
-				if (activeMenu == 'portfolio') {
+
+				if (activeMenu == 'home') {
+
+					clearInterval(timer)
+					timer = setInterval( shownext, 10000)
+
+				} else if (activeMenu == 'portfolio') {
 					
 					if (portfolioData == null) {
 						fetchPortfolio()
-						
-						console.log('fetching artworks')
-					} else {
-						
-						console.log('displaying artworks')
-						// showPortfolio()
-						
-					}
+					} 
+				} else {
+
+					clearInterval(timer)
+					
 				}
+
+				
 
 				for (let i=0; i<menuSiblings.length; i++) {
 
@@ -268,7 +358,7 @@ function menuSelection() {
 function openSinglePortfolio() {
 	[].forEach.call(document.querySelectorAll('a.post-link'), function(e) {
 		e.addEventListener('click', function(e) {
-			e.preventDefault();
+			e.preventDefault()
 
 				let id = this.dataset.id
 
@@ -324,5 +414,14 @@ function menuAndnav() {
 }
 
 
+
 loadSite()
 menuAndnav()
+
+console.log(
+' -------------------------------\n',
+'Author : Grant Imbo (grantimbo.com)\n',
+'Version : 1.2\n',
+'Repository : https://github.com/grantimbo/poweredbypen\n',
+'Description : A custom vanilla js for poweredbypen.com\n',
+'-------------------------------' );
