@@ -217,14 +217,14 @@ function custom_login_header_url($url) {
 // remove wp-admin menus
 function remove_menus() {
     if ( current_user_can('administrator') ) {
-        remove_menu_page( 'tools.php' );
-        remove_menu_page( 'upload.php' );
+        remove_menu_page( 'index.php' );
+        // remove_menu_page( 'upload.php' );
         remove_menu_page( 'edit-comments.php' );
         remove_menu_page( 'themes.php' );
+        // remove_menu_page( 'plugins.php' );
         remove_menu_page( 'users.php' );
-        remove_menu_page( 'index.php' );
-        remove_menu_page( 'plugins.php' );
-        remove_menu_page( 'options-general.php' );
+        remove_menu_page( 'tools.php' );
+        // remove_menu_page( 'options-general.php' );
     }
 
 }
@@ -297,7 +297,7 @@ function rename_post_formats( $translation, $text, $context, $domain ) {
 // Add Actions
 add_action('init', 'change_post_object' );
 add_action('init', 'header_scripts'); // Add Custom Scripts to wp_head
-// add_action('admin_init','remove_menus');
+add_action('admin_init','remove_menus');
 add_action('admin_menu', 'change_post_label' );
 add_action('wp_enqueue_scripts', 'header_styles'); // Add Theme Stylesheet
 add_action('init', 'register_menus'); // Add HTML5 Blank Menu
