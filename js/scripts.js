@@ -229,6 +229,10 @@ function fetchPortfolio() {
 		)
 }
 
+function decodeTitle (input) {
+	return input.replace(/&#8211;/g, "–")
+				.replace(/&mdash;/g, "–");
+}
 
 function fetchSinglePortfolio() {
 
@@ -275,7 +279,12 @@ function displaySinglePortfolio() {
 	modal.classList.add('active')
 	htmlBody.style.overflowY = 'hidden'
 
-	document.title = singleArtworkData.title.rendered
+	let titleSingle = singleArtworkData.title.rendered
+
+	
+	
+	document.title = decodeTitle(titleSingle)
+	// console.log(decodeTitle(titleSingle))
 
 	closeModal()
 }
@@ -376,7 +385,8 @@ function openSinglePortfolio() {
 						modal.classList.add('active')
 						htmlBody.style.overflowY = 'hidden'
 	
-						document.title = portfolioData[i].title.rendered
+						document.title = decodeTitle(portfolioData[i].title.rendered)
+						
 						// history.replaceState(null, portfolioData[i].title.rendered, portfolioData[i].link);
 					}
 				}
