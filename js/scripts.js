@@ -83,7 +83,7 @@ function loadPages() {
 	homeSlider()
 
 	aboutContent.innerHTML = siteData[2].content.rendered
-	contactContent.innerHTML = siteData[1].content.rendered
+	contactContent.innerHTML = siteData[3].content.rendered
 
 
 }
@@ -109,7 +109,7 @@ function homeSlider() {
 
 	let contents = document.createElement('div')
 	
-	contents.innerHTML = siteData[3].content.rendered
+	contents.innerHTML = siteData[0].content.rendered
 
 	let images = contents.getElementsByTagName('img')
 
