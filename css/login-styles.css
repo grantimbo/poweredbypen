@@ -13,17 +13,13 @@ body.login {
 	-moz-background-clip: padding;
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
-	/*border-bottom: 1px solid #333;
-	border-right: 1px solid #333;*/
 	background: #2B2B2B;
-	/*-moz-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);*/
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	overflow: hidden;
 }
 .login h1 a {
 	background-image: url(../img/logo.png);
-	/* background-image: none,url(../images/wordpress-logo.svg?ver=20131107); */
 	background-size: contain;
 	background-position: center top;
 	background-repeat: no-repeat;
