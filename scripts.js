@@ -1,7 +1,7 @@
 /* -------------------------------
 Author : Grant Imbo
 Site : grantimbo.com
-Version : 1.1.1
+Version : 1.1.2
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 

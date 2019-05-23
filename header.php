@@ -11,9 +11,4 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		
         <?php wp_head(); ?>
-
-</head>
-
-<body data-post="<?php echo the_ID(); ?>" <?php body_class(); ?>>
-
-    <?php echo get_template_part('sidebar'); ?>
+	</head>
