@@ -1,7 +1,7 @@
 /* -------------------------------
 Author : Grant Imbo
 Site : grantimbo.com
-Version : 1.2
+Version : 1.1.1
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 
@@ -383,6 +383,7 @@ function openSinglePortfolio() {
 						document.querySelector('.project-content').innerHTML = c
 	
 						modal.classList.add('active')
+						modal.scrollTop = 0
 						htmlBody.style.overflowY = 'hidden'
 	
 						document.title = decodeTitle(portfolioData[i].title.rendered)
