@@ -22,6 +22,7 @@
     </section>
     <section class="contact contact-wrap">
         <div class="contact-content"></div>
+        <div class="pbyplogo"></div>
     </section>
 </main>
 <?php get_footer(); ?>

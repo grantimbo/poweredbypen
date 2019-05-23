@@ -2,7 +2,7 @@
 	Theme Name: Powered by Pen
 	Theme URI: http://poweredbypen.com/
 	Description: This theme fully takes advantage of wordpress rest api. not the usual wp theme.
-	Version: 1.1.11
+	Version: 1.1.12
 	Author: Grant Imbo
 	Author URI: http://grantimbo.com/
 	Tags: tags, are, shite
@@ -304,8 +304,13 @@ a.next-slide {
     padding: 20px;
     color: #fff;
     z-index: 1;
+    box-sizing: border-box;
 }
 .contact-wrap:after {
+    content: "";
+    display: block;
+}
+.contact-wrap .pbyplogo {
     content: "";
     display: block;
     background: url(img/pbyp-logo.svg) no-repeat 0 -110%;
@@ -322,7 +327,7 @@ a.next-slide {
     opacity: 0;
     visibility: hidden;
 }
-.contact-wrap.active:after {
+.contact-wrap.active .pbyplogo {
     opacity: .8;
     background-position: 0 50%;
     visibility: visible;
@@ -663,7 +668,7 @@ a.logo-404 {
     figure.project-thumb {
         width: 33.333%;
     }
-    .contact-wrap.active:after {
+    .contact-wrap.active .pbyplogo {
         opacity: .5;
     }
     .wp-block-embed__wrapper iframe {
@@ -747,10 +752,18 @@ a.logo-404 {
     .contact-content {
         left: 0;
         margin: auto;
-        top: 250px;
+        top: 0;
+        height: 100%;
         max-width: 70%;
+        overflow-y: auto;
     }
-    .contact-wrap.active:after {
+    .contact-content:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 210px;
+    }
+    .contact-wrap.active .pbyplogo {
         opacity: .1;
     }
     main.wrap section.portfolio-wrap:before,
@@ -769,7 +782,7 @@ a.logo-404 {
         width: 94%;
         padding: 12px;
     }
-    .contact-wrap:after,
+    .contact-wrap .pbyplogo,
     .about-wrap:after {
         width: 100%;
     }
@@ -784,4 +797,10 @@ a.logo-404 {
     }
 
 
+}
+
+@media (max-width : 540px), ( max-height: 450px) {
+    .contact-content {
+        max-width: 100%;
+    }
 }
