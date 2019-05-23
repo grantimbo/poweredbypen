@@ -103,7 +103,7 @@ function header_scripts() {
         // wp_register_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js', array(), '2.7.1'); // Modernizr
         // wp_enqueue_script('modernizr'); // Enqueue it!
 
-        wp_register_script('grantimboscripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.3'); // Site Functionalities
+        wp_register_script('grantimboscripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.1.1'); // Site Functionalities
         wp_enqueue_script('grantimboscripts'); // Enqueue it!
 
     }
