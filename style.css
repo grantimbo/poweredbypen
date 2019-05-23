@@ -2,7 +2,7 @@
 	Theme Name: Powered by Pen
 	Theme URI: http://poweredbypen.com/
 	Description: This theme fully takes advantage of wordpress rest api. not the usual wp theme.
-	Version: 1.1.5
+	Version: 1.1.10
 	Author: Grant Imbo
 	Author URI: http://grantimbo.com/
 	Tags: tags, are, shite
@@ -60,7 +60,7 @@ a:active {
 	outline:0;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: sans-serif;
+	font-family: 'gotham_book', Helvetica, Arial, sans-serif;
 }
 
 
@@ -223,8 +223,10 @@ main.wrap section.active {
     cursor: pointer;
     position: absolute;
     top: 0;
-    height: 60px;
+    height: 54px;
+    width: 54px;
     color: #fff;
+    background: rgba(0, 0, 0, 0.4);
 }
 a.prev-slide {
     left: 0;
@@ -232,7 +234,11 @@ a.prev-slide {
 a.next-slide {
     right: 0;
 }
-
+.slide-controls a i {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
 /* About */
 
@@ -343,6 +349,7 @@ figure.project-thumb {
     margin: 50px auto;
     max-width: 1100px;
     min-height: 80vh;
+    box-sizing: border-box;
 }
 .project-title {
     font-size: 2.6rem;
@@ -697,7 +704,7 @@ a.logo-404 {
     }
     .mobile-menu {
         display: none;
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0, 0, 0, 0.9);
         position: fixed;
         top: 0;
         bottom: 0;
@@ -706,25 +713,21 @@ a.logo-404 {
         z-index: 1;
     }
     .mobile-menu.open {
-        display: block;
+        display: block; /* backwards compatibility */
+        display: flex;
+        align-items: center;
     }
     .menu-button-close {
         background: #000;
         display: block;
     }
     .mobile-menu nav.nav {
-        position: relative;
         width: 100%;
-        margin: 150px 0 60px;
+        margin: 0 auto;
     }
     
     .nav ul li a {
         font-size: 2.5rem;
-    }
-    nav.social-links {
-        position: relative;
-        max-width: 500px;
-        margin: 0 auto;
     }
     nav.social-links a {
         font-size: 2.5rem;
@@ -738,11 +741,13 @@ a.logo-404 {
     main.wrap {
         left: 0;
     }
+    figure.project-thumb {
+        width: 50%;
+    }
     .contact-content {
         left: 0;
         margin: auto;
         top: 250px;
-        overflow-x: scroll;
         max-width: 70%;
     }
     .contact-wrap.active:after {
@@ -750,9 +755,12 @@ a.logo-404 {
     }
 
     section.portfolio-wrap {
-        top: 200px;
+        top: 210px;
     }
-
+    .project-container {
+        width: 94%;
+        padding: 12px;
+    }
     .contact-wrap:after,
     .about-wrap:after {
         width: 100%;
