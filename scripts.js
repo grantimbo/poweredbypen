@@ -1,6 +1,5 @@
 /* -------------------------------
-Author : Grant Imbo
-Site : grantimbo.com
+Author : Grant Imbo (grantimbo.com)
 Version : 1.1.2
 Description : A custom js for Powered by Pen.
 ------------------------------- */
@@ -432,7 +431,7 @@ menuAndnav()
 console.log(
 ' -------------------------------\n',
 'Author : Grant Imbo (grantimbo.com)\n',
-'Version : 1.2\n',
+'Version : 1.1.2\n',
 'Repository : https://github.com/grantimbo/poweredbypen\n',
 'Description : A custom vanilla js for poweredbypen.com\n',
 '-------------------------------' );
