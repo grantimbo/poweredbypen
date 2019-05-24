@@ -21,7 +21,7 @@
             <nav class="social-links clear">
                 <a class="social-facebook" href="//facebook.com/poweredbypen" target="_blank"><i class="icon-facebook"></i></a>
                 <a class="social-artstation" href="//artstation.com/poweredbypen" target="_blank"><i class="icon-artstation"></i></a>
-                <a class="social-instagram" href="//instagram.com/poweredbypen" target="_blank"><i class="icon-instagram"></i></a>
+                <a class="social-instagram" href="//instagram.com/wearepoweredbypen" target="_blank"><i class="icon-instagram"></i></a>
                 <a class="social-youtube" href="//www.youtube.com/channel/UC8ZqJKbN0diXtBKCRakcxAw/" target="_blank"><i class="icon-youtube"></i></a>
                 <a class="social-behance" href="//behance.net/poweredbypen" target="_blank"><i class="icon-behance"></i></a>
             </nav>
