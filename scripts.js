@@ -415,6 +415,10 @@ function closeModal() {
 
 function menuAndnav() {
 
+	[].forEach.call(document.querySelectorAll('.mobile-menu nav.nav a'), function(e) { 
+		e.setAttribute('href', pbypData.siteUrl + '/' + e.getAttribute('data-nav') )
+	})
+
 	menuBtn.addEventListener('click', toggleMenu)
 	menuBtnCls.addEventListener('click', toggleMenu)
 
