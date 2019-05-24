@@ -1,8 +1,7 @@
 <?php
 /*
- *  Author: Grant Imbo
- *  URL: grantimbo.com
- *  Site functions for poweredbypen.com
+ *  Author: Grant Imbo (grantimbo.com)
+ *  Description: Site functions for poweredbypen.com
  */
 
 /*------------------------------------*\
@@ -100,7 +99,7 @@ function header_scripts() {
 
     	wp_deregister_script('jquery'); // Deregister WordPress jQuery
 
-        wp_register_script('pbypScripts', get_template_directory_uri() . '/scripts.js', array(), '1.1.2'); // Site Functionalities
+        wp_register_script('pbypScripts', get_template_directory_uri() . '/scripts.js', array(), '1.1.3'); // Site Functionalities
         wp_enqueue_script('pbypScripts'); // Enqueue it!
 
     }
