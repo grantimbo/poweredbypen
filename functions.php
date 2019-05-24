@@ -112,7 +112,7 @@ function header_styles() {
     wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.min.css', '2.1.3', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
-    wp_register_style('pbypStyles', get_template_directory_uri() . '/style.css', array(), '1.1.12', 'all');
+    wp_register_style('pbypStyles', get_template_directory_uri() . '/style.css', array(), '1.1.13', 'all');
     wp_enqueue_style('pbypStyles'); // Enqueue it!
 
     // wp_dequeue_style( 'wp-block-library' ); // Remove Gutenberg css
