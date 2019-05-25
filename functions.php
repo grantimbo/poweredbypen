@@ -64,6 +64,13 @@ function change_post_object() {
 }
 
 
+// hide tags and categories
+function my_remove_sub_menus() {
+    remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=category');
+    remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=post_tag');
+}
+
+
 // the handles of the enqueued scripts we want to async
 function async_scripts( $tag, $handle, $src ) {
     
@@ -75,7 +82,6 @@ function async_scripts( $tag, $handle, $src ) {
 
     return $tag;
 }
-
 
 
 // Load scripts (header.php)
@@ -178,6 +184,7 @@ add_action('init', 'change_post_object' );
 add_action('init', 'header_scripts'); // Add Custom Scripts to wp_head
 add_action('admin_init','remove_menus');
 add_action('admin_menu', 'change_post_label' );
+add_action('admin_menu', 'my_remove_sub_menus'); // remove tags and categories
 add_action('wp_enqueue_scripts', 'header_styles'); // Add Theme Stylesheet
 add_action('login_head', 'custom_login_styles');
 
