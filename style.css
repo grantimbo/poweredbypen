@@ -2,7 +2,7 @@
 	Theme Name: Powered by Pen
 	Theme URI: http://poweredbypen.com/
 	Description: This theme fully takes advantage of wordpress rest api. not the usual wp theme.
-	Version: 1.1.13
+	Version: 1.1.14
 	Author: Grant Imbo
 	Author URI: http://grantimbo.com/
 	Tags: tags, are, shite
@@ -416,6 +416,7 @@ figure.project-thumb {
     right: 20px;
     cursor: pointer;
     line-height: 40px;
+    z-index: 1;
 }
 
 
