@@ -5,21 +5,6 @@
  */
 
 /*------------------------------------*\
-	Theme Support
-\*------------------------------------*/
-
-if (function_exists('add_theme_support')) {
-
-    // Add Thumbnail Theme Support
-    add_theme_support('post-thumbnails');
-    add_image_size('portfolio-thumb', 350, 350, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
-
-    // Enables post and comment RSS feed links to head
-    add_theme_support('automatic-feed-links');
-
-}
-
-/*------------------------------------*\
 	Functions
 \*------------------------------------*/
 
@@ -38,7 +23,7 @@ function register_rest_images(){
 
 function get_rest_featured_image( $object, $field_name, $request ) {
     if( $object['featured_media'] ){
-        $img = wp_get_attachment_image_src( $object['featured_media'], 'portfolio-thumb' );
+        $img = wp_get_attachment_image_src( $object['featured_media'], 'thumbnail' );
         return $img[0];
     }
     return false;
@@ -170,11 +155,12 @@ function custom_login_header_url($url) {
 // remove wp-admin menus
 function remove_menus() {
     if ( current_user_can('administrator') ) {
+        remove_menu_page( 'admin.php' );
         remove_menu_page( 'index.php' );
         // remove_menu_page( 'upload.php' );
         remove_menu_page( 'edit-comments.php' );
         remove_menu_page( 'themes.php' );
-        // remove_menu_page( 'plugins.php' );
+        remove_menu_page( 'plugins.php' );
         remove_menu_page( 'users.php' );
         remove_menu_page( 'tools.php' );
         // remove_menu_page( 'options-general.php' );
