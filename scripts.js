@@ -1,6 +1,6 @@
 /* -------------------------------
 Author : Grant Imbo (grantimbo.com)
-Version : 1.1.3
+Version : 1.1.4
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 
@@ -203,7 +203,7 @@ function displaySection() {
 
 function fetchPortfolio() {
 
-	let artWorks = pbypData.siteUrl + '/wp-json/wp/v2/posts'
+	let artWorks = pbypData.siteUrl + '/wp-json/wp/v2/posts?_embed&per_page=20'
 
 	loadingFolioDiv.classList.remove('hide')
 
@@ -435,7 +435,7 @@ menuAndnav()
 console.log(
 ' -------------------------------\n',
 'Author : Grant Imbo (grantimbo.com)\n',
-'Version : 1.1.3\n',
+'Version : 1.1.4\n',
 'Repository : https://github.com/grantimbo/poweredbypen\n',
 'Description : A custom vanilla js for poweredbypen.com\n',
 '-------------------------------' );
