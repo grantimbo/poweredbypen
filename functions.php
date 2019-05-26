@@ -4,9 +4,13 @@
  *  Description: Site functions for poweredbypen.com
  */
 
-/*------------------------------------*\
-	Functions
-\*------------------------------------*/
+ // Add Theme Support
+if (function_exists('add_theme_support')) {
+
+    // Add thumbnail
+    add_theme_support('post-thumbnails');
+}
+
 
 // register REST API
 add_action('rest_api_init', 'register_rest_images' );
