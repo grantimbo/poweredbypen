@@ -104,7 +104,7 @@ function header_scripts() {
 
 // Deregister scripts if page is 404 and Coming Soon
 function deregister_scripts_404_comingsoon() {
-    if ( is_page('coming-soon') || is_404() ) {
+    if ( is_404() ) {
         wp_deregister_script('pbypScripts');
     }
 }
