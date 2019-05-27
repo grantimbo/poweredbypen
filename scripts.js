@@ -1,6 +1,6 @@
 /* -------------------------------
 Author : Grant Imbo (grantimbo.com)
-Version : 1.1.4
+Version : 1.1.5
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 
@@ -32,11 +32,8 @@ let siteData = null,
 	contactWrap = document.querySelector('section.contact-wrap'),
 	contactContent = document.querySelector('.contact-content'),
 
-	imgModalWrap = document.querySelector('#imgModal'),
-
 	modal = document.querySelector('#modal'),
-
-
+	imgModalWrap = document.querySelector('#imgModal'),
 
 	homeCheck = document.querySelector('body.home'),
 	aboutCheck = document.querySelector('body.about'),
@@ -46,7 +43,6 @@ let siteData = null,
 	
 
 		
-
 
 function loadSite() {
 
@@ -70,7 +66,7 @@ function loadSite() {
 						sidebar.classList.add('show')
 
 						loadPages()
-						displaySection()
+						
 
 					})
 				}
@@ -83,7 +79,6 @@ function loadPages() {
 
 	aboutContent.innerHTML = siteData[2].content.rendered
 	contactContent.innerHTML = siteData[3].content.rendered
-
 
 }
 
@@ -197,6 +192,7 @@ function displaySection() {
 	}
 
 	menuSelection()
+	loadSite()
 
 }
 
@@ -253,10 +249,8 @@ function fetchSinglePortfolio() {
 					
 					singleArtworkData = data
 
-					fetchPortfolio()
 					displaySinglePortfolio()
-
-							
+					fetchPortfolio()
 
 				})
 			}
@@ -428,14 +422,12 @@ function menuAndnav() {
 }
 
 
-
-loadSite()
+displaySection()
 menuAndnav()
-
 console.log(
 ' -------------------------------\n',
 'Author : Grant Imbo (grantimbo.com)\n',
-'Version : 1.1.4\n',
+'Version : 1.1.5\n',
 'Repository : https://github.com/grantimbo/poweredbypen\n',
 'Description : A custom vanilla js for poweredbypen.com\n',
 '-------------------------------' );
