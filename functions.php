@@ -102,6 +102,14 @@ function header_scripts() {
 }
 
 
+// Deregister scripts if page is 404 and Coming Soon
+function deregister_scripts_404_comingsoon() {
+    if ( is_page('coming-soon') || is_404() ) {
+        wp_deregister_script('pbypScripts');
+    }
+}
+
+
 // Load styles
 function header_styles() {
     wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.min.css', '2.1.3', 'all');
@@ -191,6 +199,7 @@ add_action('admin_menu', 'change_post_label' );
 add_action('admin_menu', 'my_remove_sub_menus'); // remove tags and categories
 add_action('wp_enqueue_scripts', 'header_styles'); // Add Theme Stylesheet
 add_action('login_head', 'custom_login_styles');
+add_action( 'wp_print_scripts', 'deregister_scripts_404_comingsoon' );
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
