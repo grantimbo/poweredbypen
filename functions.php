@@ -94,7 +94,7 @@ function header_scripts() {
 
     	wp_deregister_script('jquery'); // Deregister WordPress jQuery
 
-        wp_register_script('pbypScripts', get_template_directory_uri() . '/scripts.js', array(), '1.1.5'); // Site Functionalities
+        wp_register_script('pbypScripts', get_template_directory_uri() . '/scripts.js', array(), '1.2.0'); // Site Functionalities
         wp_enqueue_script('pbypScripts'); // Enqueue it!
 
     }
