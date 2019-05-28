@@ -1,6 +1,6 @@
 /* -------------------------------
 Author : Grant Imbo (grantimbo.com)
-Version : 1.1.5
+Version : 1.2.0
 Description : A custom js for Powered by Pen.
 ------------------------------- */
 
@@ -70,7 +70,11 @@ function loadSite() {
 
 					})
 				}
-			)
+			).catch(function(err) {
+				console.log('Fetch Error :-S', err)
+				alert('Looks like there was a problem. Please reload the page or contact us')
+			}
+		)
 }
 
 function loadPages() {
@@ -221,7 +225,11 @@ function fetchPortfolio() {
 
 				})
 			}
-		)
+		).catch(function(err) {
+			console.log('Fetch Error :-S', err)
+			alert('Looks like there was a problem. Please reload the page or contact us')
+		}
+	)
 }
 
 function decodeTitle (input) {
@@ -254,7 +262,11 @@ function fetchSinglePortfolio() {
 
 				})
 			}
-		)
+		).catch(function(err) {
+			console.log('Fetch Error :-S', err)
+			alert('Looks like there was a problem. Please reload the page or contact us')
+		}
+	)
 	
 }
 
@@ -427,7 +439,7 @@ menuAndnav()
 console.log(
 ' -------------------------------\n',
 'Author : Grant Imbo (grantimbo.com)\n',
-'Version : 1.1.5\n',
+'Version : 1.2.0\n',
 'Repository : https://github.com/grantimbo/poweredbypen\n',
 'Description : A custom vanilla js for poweredbypen.com\n',
 '-------------------------------' );
